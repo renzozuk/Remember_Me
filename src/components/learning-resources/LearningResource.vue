@@ -1,15 +1,15 @@
 <template>
     <li>
-        <div>
+        <base-card>
             <header>
                 <h3>{{ title }}</h3>
                 <button>Delete</button>
             </header>
-        </div>
         <p>{{ description }}</p>
         <nav>
-            <a :href="link">View Resource</a>
+            <a target="_blank" :href="link">View Resource</a>
         </nav>
+        </base-card>
     </li>
 </template>
 
@@ -33,7 +33,7 @@ header {
 
 h3 {
     font-size: 1.25rem;
-    margin: 1rem 0 0 0;
+    margin: 0.25rem 0;
 }
 
 p {
@@ -42,11 +42,11 @@ p {
 
 a {
     text-decoration: none;
-    color: #ce5c00;
+    color: #2a9e00;
 }
 
 a:hover,
 a:active {
-    color: #c89300;
+    color: #3ee800;
 }
 </style>
