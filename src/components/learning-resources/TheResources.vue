@@ -3,7 +3,9 @@
         <base-button @click="setSelectedTab('stored-resources')" :mode="storedResourceButtonMode">Stored Resources</base-button>
         <base-button @click="setSelectedTab('add-resource')" :mode="addResourceButtonMode">Add Resource</base-button>
     </base-card>
-    <component :is="selectedTab"></component>
+    <keep-alive>
+        <component :is="selectedTab"></component>
+    </keep-alive>
 </template>
 
 <script>
@@ -18,25 +20,14 @@ export default {
     data() {
         return {
             selectedTab: 'stored-resources',
-            storedResources: [
-                {
-                    id: 1,
-                    title: "Offical Guide",
-                    description: "This is an official guide.",
-                    link: "https://officialguide.com"
-                },
-                {
-                    id: 2,
-                    title: "Unoffical Guide",
-                    description: "This is an unofficial guide.",
-                    link: "https://unofficialguide.com"
-                },
-            ]
+            storedResources: []
         };
     },
     provide() {
         return {
-            resources: this.storedResources
+            resources: this.storedResources,
+            addResource: this.addResource,
+            deleteResource: this.removeResource
         };
     },
     computed: {
@@ -50,6 +41,20 @@ export default {
     methods: {
         setSelectedTab(tab) {
             this.selectedTab = tab;
+        },
+        addResource(title, description, url) {
+            const newResource = {
+                id: new Date().toISOString(),
+                title: title,
+                description: description,
+                link: url
+            }
+            this.storedResources.unshift(newResource);
+            this.selectedTab = 'stored-resources';
+        },removeResource(resourceId) {
+            console.log(resourceId);
+            const resourceIndex = this.storedResources.findIndex(resource => resource.id === resourceId);
+            this.storedResources.splice(resourceIndex, 1);
         }
     }
 }
