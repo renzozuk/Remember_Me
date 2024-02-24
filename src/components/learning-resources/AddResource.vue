@@ -5,7 +5,7 @@
             <p>Please, check all inputs and make sure that you enter something into each input field.</p>
         </template>
         <template #actions>
-            <base-button @click="confirmError">Okay</base-button>
+            <round-button @click="confirmError">Okay</round-button>
         </template>
     </base-dialog>
     <base-card>
@@ -23,7 +23,7 @@
                 <input id="link" name="link" type="url" ref="linkInput" @keyup.enter="submitData">
             </div>
             <div>
-                <base-button type="submit">Add Resource</base-button>
+                <round-button type="submit">Add Resource</round-button>
             </div>
         </form>
     </base-card>
@@ -70,13 +70,13 @@ textarea {
     width: 100%;
     font: inherit;
     padding: 0.15rem;
-    border: 1px solid #ccffda;
+    border: 1px solid #aaaaaa;
 }
 
 input:focus,
 textarea:focus {
     outline: none;
-    border-color: #2a9e00;
+    border-color: #111111;
     background-color: #e4f7e9;
 }
 
